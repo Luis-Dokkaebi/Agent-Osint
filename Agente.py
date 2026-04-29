@@ -72,7 +72,14 @@ if __name__ == "__main__":
         if hallazgos:
             print(f"\nResumen: Se encontraron {len(hallazgos)} posibles coincidencias. Verifica manualmente para confirmar suplantación o conexión.")
 
-            preservar = input("\n¿Deseas preservar evidencia forense de los enlaces encontrados? (s/n): ")
+            # Buscar en Pastebins a través de Dorks
+            buscar_dorks = input("\n¿Deseas realizar una búsqueda avanzada en Pastebins buscando filtraciones del alias? (s/n): ")
+            if buscar_dorks.lower() == 's':
+                from dorks_pastebin import buscar_alias_pastebins
+                print("\n[+] Iniciando búsqueda Dork en Pastebins...")
+                buscar_alias_pastebins(objetivo.strip())
+
+            preservar = input("\n¿Deseas preservar evidencia forense de los enlaces encontrados en las redes? (s/n): ")
             if preservar.lower() == 's':
                 # Importar la función solo si es requerida
                 from forense import preservar_evidencia
