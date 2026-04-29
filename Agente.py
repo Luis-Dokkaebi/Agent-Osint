@@ -8,16 +8,24 @@ def buscar_alias(alias):
     """
     # Diccionario de plataformas. Se usan endpoints públicos que tienden a no bloquear
     # la verificación de existencia a la primera.
-    # Nota sobre Instagram/Facebook: Estas plataformas tienen sistemas antibot agresivos
-    # que a menudo devuelven código 200 (pantalla de login) o 429, por lo que es 
-    # mejor depender de APIs oficiales o herramientas especializadas para ellas.
+    # Nota sobre Instagram/Facebook/TikTok: Estas plataformas tienen sistemas antibot agresivos
+    # que a menudo devuelven código 200 (pantalla de login genérica) o 429/403, por lo que es
+    # posible que arrojen falsos positivos o falsos negativos si se consultan mediante scraping básico.
     plataformas = {
         "GitHub": f"https://github.com/{alias}",
         "Reddit": f"https://www.reddit.com/user/{alias}/about.json",
         "Vimeo": f"https://vimeo.com/{alias}",
         "Patreon": f"https://www.patreon.com/{alias}",
         "Linktree": f"https://linktr.ee/{alias}",
-        "SoundCloud": f"https://soundcloud.com/{alias}"
+        "SoundCloud": f"https://soundcloud.com/{alias}",
+        "Facebook": f"https://www.facebook.com/{alias}",
+        "Instagram": f"https://www.instagram.com/{alias}/",
+        "TikTok": f"https://www.tiktok.com/@{alias}",
+        "Twitter": f"https://twitter.com/{alias}",
+        "Telegram": f"https://t.me/{alias}",
+        "YouTube": f"https://www.youtube.com/@{alias}",
+        "Pinterest": f"https://www.pinterest.com/{alias}/",
+        "Twitch": f"https://www.twitch.tv/{alias}"
     }
 
     # Header para simular que la petición viene de un navegador web real
