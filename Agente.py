@@ -71,5 +71,20 @@ if __name__ == "__main__":
         # en un archivo JSON o en una base de datos para tu reporte.
         if hallazgos:
             print(f"\nResumen: Se encontraron {len(hallazgos)} posibles coincidencias. Verifica manualmente para confirmar suplantación o conexión.")
+
+            preservar = input("\n¿Deseas preservar evidencia forense de los enlaces encontrados? (s/n): ")
+            if preservar.lower() == 's':
+                # Importar la función solo si es requerida
+                from forense import preservar_evidencia
+                print("\n[+] Iniciando preservación de evidencia...")
+                for sitio, url in hallazgos.items():
+                    print(f"[*] Capturando evidencia de {sitio} ({url})...")
+                    resultado = preservar_evidencia(url)
+                    if resultado["estado"] == "exito":
+                        print(f"  [✓] Evidencia guardada. SHA-256: {resultado['sha256']}")
+                    else:
+                        print(f"  [✗] Error al capturar: {resultado.get('mensaje_error')}")
+                print("[+] Preservación de evidencia finalizada.")
+
     else:
         print("[!] No se ingresó ningún alias.")
